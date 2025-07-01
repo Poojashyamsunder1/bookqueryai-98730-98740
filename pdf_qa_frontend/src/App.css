@@ -1,104 +1,232 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
-}
-
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --primary: #1976D2;
+  --secondary: #424242;
+  --accent: #FFB300;
+  --bg-light: #fafafa;
+  --bg-main: #fff;
+  --text-main: #222;
+  --text-secondary: #424242;
+  --border: #e5e5e5;
+  --transition: 0.18s cubic-bezier(0.43,0.05,0.51,1.07);
 }
 
 .App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Header */
+.qa-header {
+  width: 100%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  padding-left: 32px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 1px 0 0 var(--border);
+  background: var(--primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.qa-title {
+  font-family: inherit;
+  letter-spacing: 1px;
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Main Layout */
+.qa-main {
+  margin: 0 auto;
+  max-width: 728px;
+  padding: 32px 14px 24px 14px;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+}
+
+.qa-upload-form, .qa-question-form {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 14px;
+  background: var(--bg-light);
+  padding: 15px 22px;
+  border-radius: 11px;
+  box-shadow: 0 1px 4px rgba(70,75,78,0.03);
+  border: 1px solid var(--border);
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.qa-upload-form {
+  margin-bottom: 6px;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+.qa-upload-label {
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-right: 4px;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.qa-upload-input {
+  font-size: 1rem;
+  border: none;
+  background: none;
+  outline: 0;
+}
+.qa-upload-filename {
+  font-size: 0.96em;
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.qa-btn {
+  min-width: 74px;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 24px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform 0.11s;
+  outline: none;
+  box-shadow: 0 1px 0 0 var(--border);
+}
+.qa-btn:active {
+  transform: scale(0.98);
+}
+.qa-btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.qa-btn-primary:hover, .qa-btn-primary:focus {
+  background: #115ac2;
+}
+.qa-btn-accent {
+  background: var(--accent);
+  color: #222;
+}
+.qa-btn-accent:hover, .qa-btn-accent:focus {
+  background: #ffe082;
+  color: #222;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.qa-input {
+  flex-grow: 1;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1.06em;
+  font-family: inherit;
+  padding: 10px 18px;
+  margin-right: 18px;
+  background: #fff;
+  color: var(--text-main);
+  transition: border var(--transition);
+  outline: none;
+}
+.qa-input:focus {
+  border-color: var(--primary);
+}
+
+.qa-question-form {
+  margin-bottom: 6px;
+  gap: 0;
+}
+
+/* Conversation history */
+.qa-history-section {
+  background: var(--bg-light);
+  border-radius: 11px;
+  box-shadow: 0 1px 4px rgba(60,70,74,0.05);
+  border: 1px solid var(--border);
+  padding: 18px 22px 16px 22px;
+  min-height: 120px;
+}
+
+.qa-history-title {
+  font-size: 1.08em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 2.2em;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--secondary);
+}
+
+.qa-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.qa-item {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+  padding-bottom: 14px;
+  padding-top: 3px;
+}
+.qa-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.qa-q, .qa-a {
+  padding: 0 4px;
+  margin-bottom: 3px;
+  font-size: 1.04em;
+}
+.qa-q .qa-label, .qa-a .qa-label {
+  font-weight: 700;
+  margin-right: 7px;
+  color: var(--primary);
+}
+.qa-q { margin-bottom: 2.5px; }
+.qa-a {
+  margin-bottom: 0;
+  color: var(--secondary);
+  border-left: 3px solid var(--accent);
+  padding-left: 13px;
+}
+
+/* Empty history */
+.qa-list-empty {
+  color: var(--secondary);
+  text-align: center;
+  font-style: italic;
+  margin: 32px 0 20px 0;
+  font-size: 1.04em;
+}
+
+/* Footer */
+.qa-footer {
+  width: 100%;
+  padding: 12px 0 16px 0;
+  text-align: center;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 0.98em;
+}
+.qa-footer-link {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 9px;
+  transition: color var(--transition);
+}
+.qa-footer-link:hover { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .qa-header { font-size: 1.09rem; padding-left: 13px; }
+  .qa-main { max-width: 99vw; padding: 14px 2.5vw 18px 2.5vw;}
+  .qa-upload-form, .qa-question-form, .qa-history-section {
+    padding: 12px 7px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  .qa-btn, .qa-input { font-size: 0.96em; padding: 8px 9px; }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-}
+/* Notification handled via JS inline style */
